@@ -15,34 +15,51 @@ const Results = ({
   setSaved,
 }: Props): React.Node => {
   const buttonText = 'Add Property';
+  const [visibility, setVisibility] = React.useState('hidden');
 
   const handleClick = (object) => {
     saved.push(object);
-    console.log(saved);
     setSaved(saved);
   };
 
   const styles = {
     panel: {
       width: '640px',
-      ':hover': {
-
-      }
     },
     header: {
       textAlign: 'center',
+    },
+    button: {
+      border: '2px solid green',
+      borderRadius: '20px',
+      backgroundColor: '#DEFFE1',
+      color: 'green',
+      width: '600px',
+      height: '30px',
+      position: 'relative',
+      left: '20px',
+      top: '-100px',
+      visibility: visibility,
     }
   };
 
   return (
-    <div style={styles.panel}>
+    <div
+      style={styles.panel}
+      onMouseEnter={() => setVisibility('visible')}
+      onMouseLeave={() => setVisibility('hidden')}
+    >
       <h1 style={styles.header}>
         {'Results'}
       </h1>
       {results.map((o) => (
         <div key={o.id}>
           <Card {...o}/>
-          <Button value={buttonText} onClick={() => handleClick(o)}/>
+          <Button
+            value={buttonText}
+            onClick={() => handleClick(o)}
+            style={styles.button}
+          />
         </div>
       ))}
     </div>
