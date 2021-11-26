@@ -1,11 +1,33 @@
 // @flow
 import * as React from 'react';
+import Results from './Results';
+import SavedProperties from './SavedProperties';
 
 const App = (): React.Node => {
+  const [results, setResults] = React.useState([]);
+  const [saved, setSaved] = React.useState([]);
+
+  const getData = () => {
+    fetch('./data.json').then((res) => {
+      return res.json();
+    }).then((data) => {
+      const { results, saved } = data;
+      setResults(results);
+      setSaved(saved);
+    }).catch((err) => {
+      console.error(err);
+    });
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <h1>
-      Hello World!! We can do it!
-    </h1>
+    <div>
+      <Results results={results} saved={saved} setSaved={setSaved}/>
+      <SavedProperties saved={saved} setSaved={setSaved}/>
+    </div>
   )
 };
 
