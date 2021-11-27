@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import Results from './Results';
-import SavedProperties from './SavedProperties';
+import Results from 'App/Results';
+import SavedProperties from 'App/SavedProperties';
 
 const App = (): React.Node => {
   const [results, setResults] = React.useState([]);
