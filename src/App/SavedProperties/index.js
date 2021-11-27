@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
+import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
   saved: any,
@@ -12,7 +13,6 @@ const SavedProperties = ({
   saved,
   setSaved,
 }: Props): React.Node => {
-  const buttonText = "Remove Property";
   const [visibility, setVisibility] = React.useState('hidden');
 
   const handleClick = (object) => {
@@ -21,7 +21,7 @@ const SavedProperties = ({
     setSaved(saved);
   };
 
-  const styles = {
+  const styles = StyleSheet.create({
     panel: {
       width: '640px'
     },
@@ -40,7 +40,7 @@ const SavedProperties = ({
       top: '-100px',
       visibility: visibility,
     }
-  };
+  });
 
   React.useEffect(() => {
 
@@ -48,20 +48,21 @@ const SavedProperties = ({
 
   return (
     <div
-      style={styles.panel}
+      className={css(styles.panel)}
       onMouseEnter={() => setVisibility('visible')}
       onMouseLeave={() => setVisibility('hidden')}
     >
-      <h1 style={styles.header}>
+      <h1 className={css(styles.header)}>
         {'Saved'}
       </h1>
       {saved.map((o) => (
         <div key={o.id}>
           <Card {...o} />
           <Button
-            value={buttonText}
+            className={css(styles.button)}
+            id={o.id}
+            funcType="remove"
             onClick={() => handleClick(o)}
-            style={styles.button}
           />
         </div>
       ))}

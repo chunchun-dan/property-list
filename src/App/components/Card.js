@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
   price: string,
@@ -26,7 +27,7 @@ const Item = ({
     logo,
   } = agency;
 
-  const styles = {
+  const styles = StyleSheet.create({
     card: {
       border: '1px solid grey',
       borderRadius: '10px',
@@ -52,26 +53,26 @@ const Item = ({
     footer: {
       padding: '10px',
     }
-  };
+  });
 
   return (
-    <div id={id} style={styles.card}>
-      <div data-testid="item-header" style={styles.header}>
+    <div id={id} className={css(styles.card)}>
+      <div data-testid={`item-header-${id}`} className={css(styles.header)}>
         <img
-          data-testid="item-logo"
+          data-testid={`item-logo-${id}`}
+          className={css(styles.logo)}
           src={logo}
           alt="Logo"
-          style={styles.logo}
         />
       </div>
       <div>
         <img
-          data-testid="item-image"
+          data-testid={`item-image-${id}`}
           src={mainImage}
           alt="Property"
         />
       </div>
-      <div data-testid="item-price" style={styles.footer}>
+      <div data-testid={`item-price-${id}`} className={css(styles.footer)}>
         {`Price Guide ${price}`}
       </div>
     </div>

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
+import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
   results: any,
@@ -14,7 +15,6 @@ const Results = ({
   saved,
   setSaved,
 }: Props): React.Node => {
-  const buttonText = 'Add Property';
   const [visibility, setVisibility] = React.useState('hidden');
 
   const handleClick = (object) => {
@@ -22,7 +22,7 @@ const Results = ({
     setSaved(saved);
   };
 
-  const styles = {
+  const styles = StyleSheet.create({
     panel: {
       width: '640px',
     },
@@ -41,24 +41,25 @@ const Results = ({
       top: '-100px',
       visibility: visibility,
     }
-  };
+  });
 
   return (
     <div
-      style={styles.panel}
+      className={css(styles.panel)}
       onMouseEnter={() => setVisibility('visible')}
       onMouseLeave={() => setVisibility('hidden')}
     >
-      <h1 style={styles.header}>
+      <h1 className={css(styles.header)}>
         {'Results'}
       </h1>
       {results.map((o) => (
         <div key={o.id}>
           <Card {...o}/>
           <Button
-            value={buttonText}
+            className={css(styles.button)}
+            id={o.id}
+            funcType="add"
             onClick={() => handleClick(o)}
-            style={styles.button}
           />
         </div>
       ))}

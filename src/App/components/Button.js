@@ -2,19 +2,26 @@
 import * as React from 'react';
 
 type Props = {
-  value: string,
-  style?: any,
+  className: any,
+  funcType: 'add' | 'remove',
+  id: string,
   onClick: (any) => void,
 };
 
 const Button = ({
-  value,
-  style,
+  className,
+  funcType,
+  id,
   onClick,
 }: Props): React.Node => {
   return (
-    <button type="button" onClick={onClick} style={style}>
-      {value}
+    <button
+      data-testid={`${funcType}-button-${id}`}
+      className={className}
+      type="button"
+      onClick={onClick}
+    >
+      {funcType === 'add'? 'Add Property' : 'Remove Property' }
     </button>
   );
 }
