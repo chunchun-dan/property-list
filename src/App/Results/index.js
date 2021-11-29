@@ -15,7 +15,7 @@ const Results = ({
   saved,
   setSaved,
 }: Props): React.Node => {
-  const [visibility, setVisibility] = React.useState('hidden');
+  const [itemId, setItemId] = React.useState(-1);
 
   const handleClick = (object) => {
     saved.push(object);
@@ -28,39 +28,34 @@ const Results = ({
     },
     header: {
       textAlign: 'center',
-    },
-    button: {
-      border: '2px solid green',
-      borderRadius: '20px',
-      backgroundColor: '#DEFFE1',
-      color: 'green',
-      width: '600px',
-      height: '30px',
-      position: 'relative',
-      left: '20px',
-      top: '-100px',
-      visibility: visibility,
     }
   });
 
   return (
     <div
       className={css(styles.panel)}
-      onMouseEnter={() => setVisibility('visible')}
-      onMouseLeave={() => setVisibility('hidden')}
     >
       <h1 className={css(styles.header)}>
         {'Results'}
       </h1>
       {results.map((o) => (
-        <div key={o.id}>
-          <Card {...o}/>
-          <Button
-            className={css(styles.button)}
+        <div
+          key={o.id}
+          onMouseEnter={(e) => {
+            const dataTestId = e.target.dataset.testid || '';
+            const testIdString = dataTestId?.split('-');
+            setItemId(testIdString[testIdString?.length - 1]);
+          }}
+          onMouseLeave={() => setItemId(-1)}
+        >
+          <Card
+            {...o}
+          />
+          {(o.id === itemId) && <Button
             id={o.id}
             funcType="add"
             onClick={() => handleClick(o)}
-          />
+          />}
         </div>
       ))}
     </div>
