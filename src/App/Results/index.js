@@ -5,9 +5,39 @@ import Button from 'components/Button';
 import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
-  results: any,
-  saved: any,
-  setSaved: (any) => void,
+  results: Array<{
+    price: string,
+    agency: {
+      brandingColors: {
+        primary: string,
+      },
+      logo: string,
+    },
+    id: string,
+    mainImage: string,
+  }>,
+  saved: Array<{
+    price: string,
+    agency: {
+      brandingColors: {
+        primary: string,
+      },
+      logo: string,
+    },
+    id: string,
+    mainImage: string,
+  }>,
+  setSaved: (Array<{
+    price: string,
+    agency: {
+      brandingColors: {
+        primary: string,
+      },
+      logo: string,
+    },
+    id: string,
+    mainImage: string,
+  }>) => void,
 };
 
 const Results = ({
