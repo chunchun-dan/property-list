@@ -32,8 +32,6 @@ const App = (): React.Node => {
     }
   });
 
-  console.log(saved)
-
   return (
     <div className={css(styles.lists)}>
       <Results results={results} saved={saved} setSaved={setSaved}/>
