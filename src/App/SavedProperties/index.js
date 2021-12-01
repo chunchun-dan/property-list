@@ -15,10 +15,8 @@ const SavedProperties = ({
 }: Props): React.Node => {
   const [itemId, setItemId] = React.useState(-1);
 
-  const handleClick = (object) => {
-    const index = saved.findIndex((element) => element.id === object.id);
-    saved.splice(index, 1);
-    setSaved(saved);
+  const handleRemove = (index) => {
+    setSaved(saved.filter((o, i) => i !== index));
   };
 
   const styles = StyleSheet.create({
@@ -41,7 +39,7 @@ const SavedProperties = ({
       <h1 className={css(styles.header)}>
         {'Saved'}
       </h1>
-      {saved.map((o) => (
+      {saved.map((o, i) => (
         <div
           key={o.id}
           onMouseEnter={(e) => {
@@ -57,7 +55,7 @@ const SavedProperties = ({
           {(o.id === itemId) && <Button
             id={o.id}
             funcType="remove"
-            onClick={() => handleClick(o)}
+            onClick={() => handleRemove(i)}
           />}
         </div>
       ))}

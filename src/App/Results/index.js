@@ -17,9 +17,8 @@ const Results = ({
 }: Props): React.Node => {
   const [itemId, setItemId] = React.useState(-1);
 
-  const handleClick = (object) => {
-    saved.push(object);
-    setSaved(saved);
+  const handleAdd = (object) => {
+    setSaved([...saved, object]);
   };
 
   const styles = StyleSheet.create({
@@ -54,7 +53,7 @@ const Results = ({
           {(o.id === itemId) && <Button
             id={o.id}
             funcType="add"
-            onClick={() => handleClick(o)}
+            onClick={() => handleAdd(o)}
           />}
         </div>
       ))}
