@@ -52,23 +52,22 @@ const Results = ({
   };
 
   const styles = StyleSheet.create({
-    panel: {
-      width: '640px',
-    },
-    header: {
+    listHeader: {
       textAlign: 'center',
+    },
+    listCard: {
+      height: '600px',
     }
   });
 
   return (
-    <div
-      className={css(styles.panel)}
-    >
-      <h1 className={css(styles.header)}>
+    <div>
+      <h1 className={css(styles.listHeader)}>
         {'Results'}
       </h1>
       {results.map((o) => (
         <div
+          className={css(styles.listCard)}
           key={o.id}
           onMouseEnter={(e) => {
             const dataTestId = e.target.dataset.testid || '';

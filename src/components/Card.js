@@ -32,11 +32,6 @@ const Item = ({
       border: '1px solid grey',
       borderRadius: '10px',
       boxShadow: '2px 2px lightgrey',
-      width: '640px',
-      ':hover': {
-        border: '1px solid black'
-      },
-      marginBottom: '10px',
     },
     header:{
       backgroundColor: primary,
@@ -47,8 +42,6 @@ const Item = ({
       marginTop: '4px',
       marginBottom: '4px',
       marginLeft: '5px',
-    },
-    image: {
     },
     footer: {
       padding: '10px',

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Results from 'App/Results';
 import SavedProperties from 'App/SavedProperties';
+import { StyleSheet, css } from 'aphrodite';
 
 const App = (): React.Node => {
   const [results, setResults] = React.useState([]);
@@ -23,8 +24,16 @@ const App = (): React.Node => {
     getData();
   }, []);
 
+  const styles = StyleSheet.create({
+    lists: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly',
+    }
+  });
+
   return (
-    <div>
+    <div className={css(styles.lists)}>
       <Results results={results} saved={saved} setSaved={setSaved}/>
       <SavedProperties saved={saved} setSaved={setSaved}/>
     </div>
