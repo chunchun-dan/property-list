@@ -5,7 +5,7 @@ import Button from 'components/Button';
 import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
-  results: Array<{
+  results: Array<{|
     price: string,
     agency: {
       brandingColors: {
@@ -15,8 +15,8 @@ type Props = {
     },
     id: string,
     mainImage: string,
-  }>,
-  saved: Array<{
+  |}>,
+  saved: Array<{|
     price: string,
     agency: {
       brandingColors: {
@@ -26,8 +26,8 @@ type Props = {
     },
     id: string,
     mainImage: string,
-  }>,
-  setSaved: (Array<{
+  |}>,
+  setSaved: (Array<{|
     price: string,
     agency: {
       brandingColors: {
@@ -37,7 +37,7 @@ type Props = {
     },
     id: string,
     mainImage: string,
-  }>) => void,
+  |}>) => void,
 };
 
 const Results = ({
@@ -46,6 +46,8 @@ const Results = ({
   setSaved,
 }: Props): React.Node => {
   const [itemId, setItemId] = React.useState(-1);
+  const [cursor, setCursor] = React.useState('default');
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
 
   const handleAdd = (object) => {
     setSaved([...saved, object]);
@@ -68,20 +70,33 @@ const Results = ({
       {results.map((o) => (
         <div
           className={css(styles.listCard)}
+          data-testid={`result-item-${o.id}`}
           key={o.id}
           onMouseEnter={(e) => {
-            const dataTestId = e.target.dataset.testid || '';
-            const testIdString = dataTestId?.split('-');
-            setItemId(testIdString[testIdString?.length - 1]);
+            setItemId(() => {
+              const dataTestId = e.target.dataset.testid || '';
+              const testIdString = dataTestId?.split('-');
+              return Number(testIdString[testIdString?.length - 1]);
+            });
+            if (saved.findIndex(o => Number(o.id) === itemId) > -1) {
+              setIsButtonDisabled(true);
+            }
+            setCursor('pointer');
           }}
-          onMouseLeave={() => setItemId(-1)}
+          onMouseLeave={() => {
+            setItemId(-1);
+            setCursor('default');
+            setIsButtonDisabled(false);
+          }}
         >
           <Card
             {...o}
           />
-          {(o.id === itemId) && <Button
+          {(Number(o.id) === itemId) && <Button
             id={o.id}
             funcType="add"
+            cursor={cursor}
+            isButtonDisabled={isButtonDisabled}
             onClick={() => handleAdd(o)}
           />}
         </div>

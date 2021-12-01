@@ -5,7 +5,7 @@ import Button from 'components/Button';
 import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
-  saved: Array<{
+  saved: Array<{|
     price: string,
     agency: {
       brandingColors: {
@@ -15,9 +15,9 @@ type Props = {
     },
     id: string,
     mainImage: string,
-  }>,
+  |}>,
   setSaved: (
-    Array<{
+    Array<{|
       price: string,
       agency: {
         brandingColors: {
@@ -27,7 +27,7 @@ type Props = {
       },
       id: string,
       mainImage: string,
-    }>
+    |}>
   ) => void,
 };
 
@@ -36,6 +36,7 @@ const SavedProperties = ({
   setSaved,
 }: Props): React.Node => {
   const [itemId, setItemId] = React.useState(-1);
+  const [cursor, setCursor] = React.useState('default');
 
   const handleRemove = (index) => {
     setSaved(saved.filter((o, i) => i !== index));
@@ -61,20 +62,26 @@ const SavedProperties = ({
       {saved.map((o, i) => (
         <div
           className={css(styles.listCard)}
+          data-testid={`saved-item-${o.id}`}
           key={o.id}
           onMouseEnter={(e) => {
-            const dataTestId = e.target.dataset.testid || '';
-            const testIdString = dataTestId?.split('-');
-            setItemId(testIdString[testIdString?.length - 1]);
+            setItemId(() => {
+              const dataTestId = e.target.dataset.testid || '';
+              const testIdString = dataTestId?.split('-');
+              return Number(testIdString[testIdString?.length - 1]);
+            });
+            setCursor('pointer');
           }}
           onMouseLeave={() => {
             setItemId(-1);
+            setCursor('default');
           }}
         >
           <Card {...o} />
-          {(o.id === itemId) && <Button
+          {(Number(o.id) === itemId) && <Button
             id={o.id}
             funcType="remove"
+            cursor={cursor}
             onClick={() => handleRemove(i)}
           />}
         </div>
