@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import Card from 'App/components/Card';
-import Button from 'App/components/Button';
+import Card from 'components/Card';
+import Button from 'components/Button';
 import { StyleSheet, css } from 'aphrodite';
 
 type Props = {

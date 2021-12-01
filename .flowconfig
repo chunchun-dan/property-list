@@ -8,5 +8,7 @@
 
 [options]
 module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/\1'
+format.bracket_spacing=true
+format.single_quotes=true
 
 [strict]
