@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet, css } from "aphrodite/src/no-important";
+import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
   funcType: 'add' | 'remove',
