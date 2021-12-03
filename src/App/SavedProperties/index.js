@@ -55,8 +55,11 @@ const SavedProperties = ({
   }, [saved]);
 
   return (
-    <div>
-      <h1 className={css(styles.listHeader)}>
+    <div data-testid="saved-list">
+      <h1
+        className={css(styles.listHeader)}
+        data-testid="saved-list-title"
+      >
         {'Saved'}
       </h1>
       {saved.map((o, i) => (

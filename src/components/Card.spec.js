@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import {
   screen,
@@ -32,15 +33,15 @@ describe('<Card />', () => {
       <Card {...props} />
     );
 
-    expect(screen.getByTestId('item-header-1')).not.toBeNull();
+    expect(screen.getByTestId('card-1')).not.toBeNull();
+    expect(screen.getByTestId('card-header-1')).not.toBeNull();
 
-    const logo : HTMLImageElement = (screen.getByTestId('item-logo-1'): any);
+    const logo : HTMLImageElement = (screen.getByTestId('card-logo-1'): any);
     expect(logo.src).toBe('http://localhost/test/logo');
 
-    const image : HTMLImageElement = (screen.getByTestId('item-image-1'): any);
+    const image : HTMLImageElement = (screen.getByTestId('card-image-1'): any);
     expect(image.src).toBe('http://localhost/test/image');
 
-    expect(screen.getByTestId('item-price-1')).not.toBeNull();
-    expect(screen.getByText('Price Guide $100')).not.toBeNull();
+    expect(screen.getByTestId('card-price-1').textContent).toBe('Price Guide $100');
   });
 });

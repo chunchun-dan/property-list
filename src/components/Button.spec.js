@@ -36,7 +36,7 @@ describe('<Button />', () => {
     );
 
     expect(screen.getByTestId('add-button-1')).not.toBeNull();
-    expect(screen.getByText('Add Property')).not.toBeNull();
+    expect(screen.getByTestId('add-button-1').textContent).toBe('Add Property');
   });
 
   it('renders remove property Button', () => {
@@ -48,7 +48,7 @@ describe('<Button />', () => {
     );
 
     expect(screen.getByTestId('remove-button-1')).not.toBeNull();
-    expect(screen.getByText('Remove Property')).not.toBeNull();
+    expect(screen.getByTestId('remove-button-1').textContent).toBe('Remove Property');
   });
 
   it('renders disabled Button', () => {

@@ -64,8 +64,11 @@ const Results = ({
   });
 
   return (
-    <div>
-      <h1 className={css(styles.listHeader)}>
+    <div data-testid="results-list">
+      <h1
+        className={css(styles.listHeader)}
+        data-testid="results-list-title"
+      >
         {'Results'}
       </h1>
       {results.map((o) => (

@@ -49,10 +49,14 @@ const Item = ({
   });
 
   return (
-    <div id={id} className={css(styles.card)}>
-      <div data-testid={`item-header-${id}`} className={css(styles.header)}>
+    <div
+      id={id}
+      className={css(styles.card)}
+      data-testid={`card-${id}`}
+    >
+      <div data-testid={`card-header-${id}`} className={css(styles.header)}>
         <img
-          data-testid={`item-logo-${id}`}
+          data-testid={`card-logo-${id}`}
           className={css(styles.logo)}
           src={logo}
           alt="Logo"
@@ -60,12 +64,12 @@ const Item = ({
       </div>
       <div>
         <img
-          data-testid={`item-image-${id}`}
+          data-testid={`card-image-${id}`}
           src={mainImage}
           alt="Property"
         />
       </div>
-      <div data-testid={`item-price-${id}`} className={css(styles.footer)}>
+      <div data-testid={`card-price-${id}`} className={css(styles.footer)}>
         {`Price Guide ${price}`}
       </div>
     </div>
