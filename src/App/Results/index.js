@@ -73,14 +73,13 @@ const Results = ({
           data-testid={`result-item-${o.id}`}
           key={o.id}
           onMouseEnter={(e) => {
-            setItemId(() => {
-              const dataTestId = e.target.dataset.testid || '';
-              const testIdString = dataTestId?.split('-');
-              return Number(testIdString[testIdString?.length - 1]);
-            });
-            if (saved.findIndex(o => Number(o.id) === itemId) > -1) {
+            const dataTestId = e.target.dataset.testid || '';
+            const testIdString = dataTestId?.split('-');
+            const id = Number(testIdString[testIdString?.length - 1]);
+            if (saved.findIndex(o => Number(o.id) === id) > -1) {
               setIsButtonDisabled(true);
             }
+            setItemId(id);
             setCursor('pointer');
           }}
           onMouseLeave={() => {
