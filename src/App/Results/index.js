@@ -50,6 +50,7 @@ const Results = ({
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
 
   const handleAdd = (object) => {
+    setIsButtonDisabled(true);
     setSaved([...saved, object]);
   };
 
