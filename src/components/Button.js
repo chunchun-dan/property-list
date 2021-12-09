@@ -19,10 +19,6 @@ const Button = ({
 }: Props): React.Node => {
   const isAdd = funcType === 'add';
 
-  React.useEffect(() => {
-
-  }, [isButtonDisabled]);
-
   const styles = StyleSheet.create({
     button: {
       border: `2px solid ${isAdd ? 'green' : 'red'}`,

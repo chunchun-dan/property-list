@@ -9,7 +9,12 @@ const App = (): React.Node => {
   const [saved, setSaved] = React.useState([]);
 
   const getData = () => {
-    fetch('./data.json').then((res) => {
+    fetch('./data.json',{
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }).then((res) => {
       return res.json();
     }).then((data) => {
       const { results, saved } = data;
