@@ -14,6 +14,12 @@ This project is to display the UI of a property list app. There are two lists of
 - we are using the dependency management tool, `yarn`. To install, use `brew install yarn`. To check the version, `yarn -v`.
 - Recommended IDE: Visual Studio Code.
 
+```shell
+$ yarn # install required dependencies.
+
+```
+- Install dependencies before run the app
+
 ### Running App
 
 ```shell
