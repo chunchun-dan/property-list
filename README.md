@@ -46,4 +46,4 @@ To see it, simply access this website [https://chunchun-dan.github.io/property-l
 
 - Make the Add Property button disabled when it is clicked
 - Make the Add Property button disabled when there has been a same result property added on the Saved list
-- Mobile View is not implemented
+- Hanle Mobile View
