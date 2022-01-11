@@ -4,18 +4,9 @@ import {
   screen,
   render,
 } from '@testing-library/react';
-import { StyleSheetTestUtils } from 'aphrodite';
 import App from 'App';
 
 describe('<App />', () => {
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
-
   it('renders App', () => {
     render(
       <App />

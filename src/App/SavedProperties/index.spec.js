@@ -6,7 +6,6 @@ import {
   fireEvent,
   waitFor,
 } from '@testing-library/react';
-import { StyleSheetTestUtils } from 'aphrodite';
 import SavedProperties from 'App/SavedProperties';
 
 describe('<SavedProperties', () => {
@@ -30,14 +29,6 @@ describe('<SavedProperties', () => {
     saved,
     setSaved: setSavedFunc,
   }
-
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
 
   it('renders SavedProperties component', () => {
     render(

@@ -8,7 +8,6 @@ import {
  } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Button from 'components/Button';
-import { StyleSheetTestUtils } from 'aphrodite';
 
 describe('<Button />', () => {
   const onClickFunc = jest.fn();
@@ -20,15 +19,6 @@ describe('<Button />', () => {
     isButtonDisabled: false,
     onClick: onClickFunc,
   };
-
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
-
 
   it('renders add property Button', () => {
     render(

@@ -4,7 +4,6 @@ import {
   screen,
   render,
 } from '@testing-library/react';
-import { StyleSheetTestUtils } from 'aphrodite';
 import Card from 'components/Card';
 
 describe('<Card />', () => {
@@ -19,14 +18,6 @@ describe('<Card />', () => {
     id: '1',
     mainImage: 'test/image',
   };
-
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
 
   it('renders Card component', () => {
     render(

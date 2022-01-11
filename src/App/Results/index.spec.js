@@ -6,7 +6,6 @@ import {
   fireEvent,
   waitFor,
 } from '@testing-library/react';
-import { StyleSheetTestUtils } from 'aphrodite';
 import Results from 'App/Results';
 
 describe('<Results />', () => {
@@ -45,14 +44,6 @@ describe('<Results />', () => {
     saved,
     setSaved: setSavedFunc,
   };
-
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
 
   it('renders Results component', () => {
     render(
