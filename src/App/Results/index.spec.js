@@ -152,4 +152,16 @@ describe('<Results />', () => {
     const addButton : HTMLButtonElement = (screen.getByTestId('add-button-2'): any);
     expect(addButton.disabled).toBe(true);
   });
+
+  it('call handleDisable button when clicking the disable button', () => {
+    render(
+      <Results {...props} />
+    )
+
+    fireEvent.mouseEnter(screen.getByTestId('card-2'));
+    const disableButton: HTMLButtonElement = (screen.getByTestId('disable-button-2'): any);
+    expect(disableButton).not.toBeNull();
+
+    fireEvent.click(disableButton);
+  })
 });

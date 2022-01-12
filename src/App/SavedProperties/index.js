@@ -81,12 +81,15 @@ const SavedProperties = ({
           }}
         >
           <Card {...o} />
-          {(Number(o.id) === itemId) && <Button
+          {(Number(o.id) === itemId) && (<Button
             id={o.id}
             funcType="remove"
             cursor={cursor}
             onClick={() => handleRemove(i)}
-          />}
+          >
+            {'Remove Property'}
+          </Button>
+          )}
         </div>
       ))}
     </div>

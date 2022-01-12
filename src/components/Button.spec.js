@@ -22,7 +22,7 @@ describe('<Button />', () => {
 
   it('renders add property Button', () => {
     render(
-      <Button {...props} />
+      <Button {...props}>{'Add Property'}</Button>
     );
 
     expect(screen.getByTestId('add-button-1')).not.toBeNull();
@@ -34,7 +34,7 @@ describe('<Button />', () => {
       <Button
         {...props}
         funcType="remove"
-      />
+      >{'Remove Property'}</Button>
     );
 
     expect(screen.getByTestId('remove-button-1')).not.toBeNull();
@@ -46,7 +46,7 @@ describe('<Button />', () => {
       <Button
         {...props}
         isButtonDisabled={true}
-      />
+      >{'Add Property'}</Button>
     );
 
     const button : HTMLButtonElement = (screen.getByTestId('add-button-1'): any);
@@ -56,10 +56,22 @@ describe('<Button />', () => {
 
   it('calls onClick function when clicking the button', async () => {
     render(
-      <Button {...props} />
+      <Button {...props}>{'Add Property'}</Button>
     );
 
     fireEvent.click(screen.getByTestId('add-button-1'));
+    await waitFor(() => expect(onClickFunc).toHaveBeenCalled());
+  });
+
+  it('calls onClick function when clicking the button with setDisabled', async () => {
+    render(
+      <Button
+        {...props}
+        funcType='disable'
+      >{'Disable Button'}</Button>
+    );
+
+    fireEvent.click(screen.getByTestId('disable-button-1'));
     await waitFor(() => expect(onClickFunc).toHaveBeenCalled());
   });
 });

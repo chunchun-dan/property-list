@@ -48,11 +48,17 @@ const Results = ({
   const [itemId, setItemId] = React.useState(-1);
   const [cursor, setCursor] = React.useState('default');
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+  const [cardIds, setCardIds] = React.useState([]);
 
   const handleAdd = (object) => {
     setIsButtonDisabled(true);
     setSaved([...saved, object]);
   };
+
+  const handleDisable = (id) => {
+    setCardIds([id, ...cardIds])
+    setIsButtonDisabled(true);
+  }
 
   const styles = StyleSheet.create({
     listHeader: {
@@ -60,7 +66,7 @@ const Results = ({
     },
     listCard: {
       height: '600px',
-    }
+    },
   });
 
   return (
@@ -80,7 +86,7 @@ const Results = ({
             const dataTestId = e.target.dataset.testid || '';
             const testIdString = dataTestId?.split('-');
             const id = Number(testIdString[testIdString?.length - 1]);
-            if (saved.findIndex(o => Number(o.id) === id) > -1) {
+            if (saved.findIndex(o => Number(o.id) === id) > -1 || cardIds.findIndex(o => Number(o) === id) > -1) {
               setIsButtonDisabled(true);
             }
             setItemId(id);
@@ -94,14 +100,30 @@ const Results = ({
         >
           <Card
             {...o}
+            cardIds={cardIds}
           />
-          {(Number(o.id) === itemId) && <Button
-            id={o.id}
-            funcType="add"
-            cursor={cursor}
-            isButtonDisabled={isButtonDisabled}
-            onClick={() => handleAdd(o)}
-          />}
+          {(Number(o.id) === itemId) && (
+            <div>
+              <Button
+              id={o.id}
+              funcType="add"
+              cursor={cursor}
+              isButtonDisabled={isButtonDisabled}
+              onClick={() => handleAdd(o)}
+              >
+                {'Add Property'}
+              </Button>
+              <Button
+                id={o.id}
+                funcType="disable"
+                cursor={cursor}
+                isButtonDisabled={isButtonDisabled}
+                onClick={() => handleDisable(o.id)}
+              >
+                {'Disable Property'}
+              </Button>
+            </div>
+          )}
         </div>
       ))}
     </div>

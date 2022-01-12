@@ -3,12 +3,40 @@ import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 type Props = {
-  funcType: 'add' | 'remove',
+  funcType: 'add' | 'remove' | 'disable',
   id: string,
   cursor: 'default' | 'pointer',
   isButtonDisabled?: boolean,
   onClick: (any) => void,
+  children: React.Node,
 };
+
+const buttonStyles = [
+  {
+    type: 'add',
+    value: {
+      border: '2px solid green',
+      backgroundColor: '#DEFFE1',
+      color: 'green',
+    }
+  },
+  {
+    type: 'remove',
+    value: {
+      border: '2px solid red',
+      backgroundColor: '#FFE4E1',
+      color: 'red',
+    }
+  },
+  {
+    type: 'disable',
+    value: {
+      border: '2px solid black',
+      backgroundColor: 'white',
+      color: 'black',
+    }
+  }
+];
 
 const Button = ({
   funcType,
@@ -16,21 +44,20 @@ const Button = ({
   cursor,
   isButtonDisabled = false,
   onClick,
+  children,
 }: Props): React.Node => {
-  const isAdd = funcType === 'add';
+  const index = buttonStyles.findIndex(o => o.type === funcType);
 
   const styles = StyleSheet.create({
     button: {
-      border: `2px solid ${isAdd ? 'green' : 'red'}`,
       borderRadius: '20px',
-      backgroundColor: isAdd ? '#DEFFE1' : '#FFE4E1',
-      color: isAdd ? 'green' : 'red',
       cursor,
       width: '600px',
       height: '30px',
       position: 'relative',
       left: '20px',
       top: '-100px',
+      ...buttonStyles[index].value,
     },
     disabledButton: {
       border: `2px solid grey`,
@@ -47,15 +74,17 @@ const Button = ({
   });
 
   return (
-    <button
-      className={isButtonDisabled ? css(styles.disabledButton) : css(styles.button)}
-      data-testid={`${funcType}-button-${id}`}
-      disabled={isButtonDisabled}
-      type="button"
-      onClick={onClick}
-    >
-      {funcType === 'add'? 'Add Property' : 'Remove Property' }
-    </button>
+    <div>
+      <button
+        className={isButtonDisabled ? css(styles.disabledButton) : css(styles.button)}
+        data-testid={`${funcType}-button-${id}`}
+        disabled={isButtonDisabled}
+        type="button"
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    </div>
   );
 }
 

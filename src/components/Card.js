@@ -12,6 +12,7 @@ type Props = {
   },
   id: string,
   mainImage: string,
+  cardIds?: Array<string>,
 };
 
 const Item = ({
@@ -19,6 +20,7 @@ const Item = ({
   agency,
   id,
   mainImage,
+  cardIds = [],
 }: Props): React.Node => {
   const {
     brandingColors: {
@@ -27,6 +29,8 @@ const Item = ({
     logo,
   } = agency;
 
+
+
   const styles = StyleSheet.create({
     card: {
       border: '1px solid grey',
@@ -34,7 +38,8 @@ const Item = ({
       boxShadow: '2px 2px lightgrey',
       '@media only screen and (max-width: 768px)': {
         maxWidth: '640px',
-      }
+      },
+      opacity: cardIds.findIndex((o) => o === id) > -1 ? 0.5 : 1,
     },
     header:{
       backgroundColor: primary,
